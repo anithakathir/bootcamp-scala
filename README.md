@@ -11,6 +11,8 @@ You can find all the problem statements [here](https://indix-engineering.atlassi
 Base project with Scala (2.10.3) and Scalatest (2.1.5).
 
 ## Code of Conduct
-The solutions of other developers to the problems in this repo can be found at their respective branches. If you're new and taking these problems for the first time, it is assumed you'll not look into other solutions until you've a working solution by yourself. 
+The solutions of other developers to the problems, can be found at their respective branches. If you're taking these problems for the first time, please do not look into others solutions until you've a working solution by yourself. 
 
 Feel free to ask your buddy for any kind of help you might need in solving these problems.
+
+For folks who have already solved problems, feel free to browse others solutions, ask questions and provide feedback on the code.
