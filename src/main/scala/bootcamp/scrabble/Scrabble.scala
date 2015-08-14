@@ -39,9 +39,7 @@ object Scrabble {
 
     multiplier match {
       case Some("TL") => charpoints = charPointsMap.getOrElse(char,0) * 3
-        println(x +" "+y+" "+multiplier +" "+ char +" "+charpoints)
       case Some("DL") => charpoints = charPointsMap.getOrElse(char,0) * 2
-        println(x +" "+y+" "+multiplier +" "+ char +" "+charpoints)
       case _ | Some("TW") | Some("DW")  => {
         charpoints = charPointsMap.getOrElse(char,0)
         if(multiplier == Some("TW")) tripleMultiplierFlag += 1
