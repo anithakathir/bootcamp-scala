@@ -1,31 +1,59 @@
 package com.indix.bootcamp.scrabble
 
+class Cell{
+  def letterMultiplier = 1
+  def wordMultiplier = 1
+}
 
+class TripleWord extends Cell{
+  override def wordMultiplier = 3
+}
 
-object ScrabbleInit {
+class DoubleWord extends  Cell{
+  override  def wordMultiplier = 2
+}
 
+class TripleLetter extends Cell{
+  override def letterMultiplier = 3
+}
+
+class DoubleLetter extends Cell{
+  override def letterMultiplier = 2
+}
+
+class ScrabbleInit {
+
+  val tripleWord = Some(new TripleWord())
+  val doubleWord = Some(new DoubleWord())
+  val tripleLetter = Some(new TripleLetter())
+  val doubleLetter = Some(new DoubleLetter())
+  val empty = Some(new Cell())
+  
 
   def initPointsMap(): Map[Char, Int] =
   {
-    val list = List.range('a','{').zip(List(1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10))
-
-    val charPointsMap = list.toMap
-
-    charPointsMap
-
+    Map('a' -> 1, 'b' -> 3, 'c' -> 3, 'd' -> 2, 'e' -> 1, 'r' -> 4, 'g' -> 2, 'h' -> 4, 'i' -> 1, 'j' -> 8, 'k' -> 5, 'l' -> 1, 'm' -> 3, 'n' -> 1, 'o' -> 1,
+                            'p' -> 3, 'q' -> 10, 'r' -> 1, 's' -> 1, 't' -> 1, 'u' -> 1, 'v' -> 4, 'w' -> 4, 'x' -> 8, 'y' -> 4, 'z' -> 10)
   }
 
-  def initScrabbleBoard(): Map[Set[Int],String]=
-  {
-    //val scrabbleBoard: Array[Array[Int]] = Array.ofDim(15, 15)
-    val scrabbleBoard: Map[Set[Int],String] =
-    Map(
-    Set(14,14) -> "TW",
-    Set(11,14) -> "DL",
-    Set(7,14) -> "TW",
-    Set(3,14) -> "DL",
-    Set(0,14) -> "TW"
-    )
-  scrabbleBoard
+  def initScrabbleBoard():Array[Array[Some[Cell]]]= {
+
+      Array(
+        Array(tripleWord, empty, empty, doubleLetter, empty, empty, empty, tripleWord, empty, empty, empty, doubleLetter, empty, empty, tripleWord),
+        Array(empty, doubleWord, empty, empty, empty, tripleWord, empty, empty, empty, tripleWord, empty, empty, empty, doubleWord, empty),
+        Array(empty, empty, doubleWord, empty, empty, empty, doubleLetter, empty, doubleLetter, empty, empty, empty, doubleWord, empty, empty),
+        Array(doubleLetter, empty, empty, doubleWord, empty, empty, empty, doubleLetter, empty, empty, empty, doubleWord, empty, empty, doubleLetter),
+        Array(empty, empty, empty, empty, doubleWord, empty, empty, empty, empty, empty, doubleWord,  empty, empty, empty, empty),
+        Array(empty, tripleWord, empty, empty, empty, tripleWord, empty, empty, empty, tripleWord,  empty, empty, empty, tripleWord, empty),
+        Array(empty, empty, doubleLetter, empty, empty, empty, doubleLetter, empty, doubleLetter, empty, empty, empty, doubleLetter,  empty, empty),
+        Array(tripleWord, empty, empty, doubleLetter, empty, empty, empty, doubleWord, empty, empty, empty, doubleLetter, empty, empty, tripleWord),
+        Array(empty, empty, doubleLetter, empty, empty, empty, doubleLetter, empty, doubleLetter, empty, empty, empty, doubleLetter,  empty, empty),
+        Array(empty, tripleWord, empty, empty, empty, tripleWord, empty, empty, empty, tripleWord,  empty, empty, empty, tripleWord, empty),
+        Array(empty, empty, empty, empty, doubleWord, empty, empty, empty, empty, empty, doubleWord,  empty, empty, empty, empty),
+        Array(doubleLetter, empty, empty, doubleWord, empty, empty, empty, doubleLetter, empty, empty, empty, doubleWord, empty, empty, doubleLetter),
+        Array(empty, empty, doubleWord, empty, empty, empty, doubleLetter, empty, doubleLetter, empty, empty, empty, doubleWord, empty, empty),
+        Array(empty, doubleWord, empty, empty, empty, tripleWord, empty, empty, empty, tripleWord, empty, empty, empty, doubleWord, empty),
+        Array(tripleWord, empty, empty, doubleLetter, empty, empty, empty, tripleWord, empty, empty, empty, doubleLetter, empty, empty, tripleWord)
+      )
   }
 }

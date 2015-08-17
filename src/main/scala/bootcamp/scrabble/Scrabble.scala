@@ -1,51 +1,34 @@
 package com.indix.bootcamp.scrabble
 
-import sun.security.x509.CRLDistributionPointsExtension
+import com.indix.bootcamp.scrabble.ScrabbleInit
 
 
-object Scrabble {
+object Scrabble
+{
+  val init = new ScrabbleInit()
+  val charPointsMap = init.initPointsMap()
+  val scrabbleBoard:Array[Array[Some[Cell]]] = init.initScrabbleBoard()
 
-  val charPointsMap = ScrabbleInit.initPointsMap()
-  val scrabbleBoard = ScrabbleInit.initScrabbleBoard()
-  var doubleMultiplierFlag = 0;
-  var tripleMultiplierFlag = 0;
-  var charpoints = 0
+  val (right, down) = ('R','D')
+  var doubleMultiplierFlag,tripleMultiplierFlag = 0;
 
-  def calculateScores(word:Array[Char],positionX: Int,positionY: Int, direction: Char):Int = {
 
-    var points:Int = 0
-    var x = positionX
-    var y = positionY
+  def calculateScores(word:Array[Char],x: Int,y: Int, direction: Char):Int = {
 
+    var points: Int = 0
     direction match {
-      case 'R' => word.map{c => points = points + boostPoints(c,x,y)
-                            y += 1
-                          }
+      case right => points = word.foldLeft(0){(acc,c) => acc + boostPoints(c,x,y)}
 
-      case 'D' => word.map{c => points = points + boostPoints(c,x,y)
-                            x-= 1
-                          }
+      case down => points = word.foldLeft(0){(acc,c) => acc + boostPoints(c,x,y)}
     }
-    println("Points :" + points )
-
-    val finalPoints = booster(points)
-
-    finalPoints.toInt
+    booster(points).toInt
   }
 
   def boostPoints(char:Char, x:Int, y:Int):Int = {
+        val charpoints = charPointsMap.getOrElse(char, 0) * scrabbleBoard(x)(y).get.letterMultiplier
+        if (scrabbleBoard(x)(y).get.wordMultiplier == 3) tripleMultiplierFlag += 1
+        else if (scrabbleBoard(x)(y).get.wordMultiplier == 2) doubleMultiplierFlag += 1
 
-    var multiplier = scrabbleBoard.get(Set(x,y))
-
-    multiplier match {
-      case Some("TL") => charpoints = charPointsMap.getOrElse(char,0) * 3
-      case Some("DL") => charpoints = charPointsMap.getOrElse(char,0) * 2
-      case _ | Some("TW") | Some("DW")  => {
-        charpoints = charPointsMap.getOrElse(char,0)
-        if(multiplier == Some("TW")) tripleMultiplierFlag += 1
-        if(multiplier == Some("DW")) doubleMultiplierFlag += 1
-      }
-    }
     charpoints
   }
 
@@ -58,3 +41,4 @@ object Scrabble {
     p
   }
 }
+
