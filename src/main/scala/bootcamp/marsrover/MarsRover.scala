@@ -15,15 +15,17 @@ object MarsRover {
       case 'W' => Set(currentPosition.head - 1,currentPosition.last)
     }
   }
-
-  def processRoverMovement(initPosition: Set[Int],initHead: Char, commandList: String): (Set[Int],Char) ={
-
+  def processRoverMovement(maxPosition : Set[Int], initPosition: Set[Int],initHead: Char, commandList: String): (Set[Int],Char) ={
     commandList.foldLeft(initPosition,initHead){
       (position,command) => {
-        command match{
-          case 'L' =>  (position._1,rotateLeftMap(position._2))
-          case 'R' =>  (position._1,rotateRightMap(position._2))
-          case 'M' => (moveForward(position._1,position._2),position._2)
+        if((position._1.head > maxPosition.head) || (position._1.last > maxPosition.last))
+          throw new IllegalStateException("Not allowed to go beyond the plateau")
+          else {
+          command match {
+            case 'L' => (position._1, rotateLeftMap(position._2))
+            case 'R' => (position._1, rotateRightMap(position._2))
+            case 'M' => (moveForward(position._1, position._2), position._2)
+          }
         }
       }
     }
