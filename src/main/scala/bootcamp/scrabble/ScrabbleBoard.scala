@@ -5,19 +5,19 @@ abstract class Cell{
   def wordMultiplier = 1
 }
 
-case object tripleWord extends Cell{
+case object TripleWord extends Cell{
   override def wordMultiplier = 3
 }
 
-case object doubleWord extends  Cell{
+case object DoubleWord extends  Cell{
   override  def wordMultiplier = 2
 }
 
-case object tripleLetter extends Cell{
+case object TripleLetter extends Cell{
   override def letterMultiplier = 3
 }
 
-case object doubleLetter extends Cell{
+case object DoubleLetter extends Cell{
   override def letterMultiplier = 2
 }
 case object Empty extends Cell
@@ -32,21 +32,21 @@ object ScrabbleBoard {
 
   def initScrabbleBoard():Array[Array[Cell]]= {
       Array(
-        Array(tripleWord, Empty, Empty, doubleLetter, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, doubleLetter, Empty, Empty, tripleWord),
-        Array(Empty, doubleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, doubleWord, Empty),
-        Array(Empty, Empty, doubleWord, Empty, Empty, Empty, doubleLetter, Empty, doubleLetter, Empty, Empty, Empty, doubleWord, Empty, Empty),
-        Array(doubleLetter, Empty, Empty, doubleWord, Empty, Empty, Empty, doubleLetter, Empty, Empty, Empty, doubleWord, Empty, Empty, doubleLetter),
-        Array(Empty, Empty, Empty, Empty, doubleWord, Empty, Empty, Empty, Empty, Empty, doubleWord,  Empty, Empty, Empty, Empty),
-        Array(Empty, tripleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, tripleWord,  Empty, Empty, Empty, tripleWord, Empty),
-        Array(Empty, Empty, doubleLetter, Empty, Empty, Empty, doubleLetter, Empty, doubleLetter, Empty, Empty, Empty, doubleLetter,  Empty, Empty),
-        Array(tripleWord, Empty, Empty, doubleLetter, Empty, Empty, Empty, doubleWord, Empty, Empty, Empty, doubleLetter, Empty, Empty, tripleWord),
-        Array(Empty, Empty, doubleLetter, Empty, Empty, Empty, doubleLetter, Empty, doubleLetter, Empty, Empty, Empty, doubleLetter,  Empty, Empty),
-        Array(Empty, tripleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, tripleWord,  Empty, Empty, Empty, tripleWord, Empty),
-        Array(Empty, Empty, Empty, Empty, doubleWord, Empty, Empty, Empty, Empty, Empty, doubleWord,  Empty, Empty, Empty, Empty),
-        Array(doubleLetter, Empty, Empty, doubleWord, Empty, Empty, Empty, doubleLetter, Empty, Empty, Empty, doubleWord, Empty, Empty, doubleLetter),
-        Array(Empty, Empty, doubleWord, Empty, Empty, Empty, doubleLetter, Empty, doubleLetter, Empty, Empty, Empty, doubleWord, Empty, Empty),
-        Array(Empty, doubleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, doubleWord, Empty),
-        Array(tripleWord, Empty, Empty, doubleLetter, Empty, Empty, Empty, tripleWord, Empty, Empty, Empty, doubleLetter, Empty, Empty, tripleWord)
+        Array(TripleWord, Empty, Empty, DoubleLetter, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, DoubleLetter, Empty, Empty, TripleWord),
+        Array(Empty, DoubleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, DoubleWord, Empty),
+        Array(Empty, Empty, DoubleWord, Empty, Empty, Empty, DoubleLetter, Empty, DoubleLetter, Empty, Empty, Empty, DoubleWord, Empty, Empty),
+        Array(DoubleLetter, Empty, Empty, DoubleWord, Empty, Empty, Empty, DoubleLetter, Empty, Empty, Empty, DoubleWord, Empty, Empty, DoubleLetter),
+        Array(Empty, Empty, Empty, Empty, DoubleWord, Empty, Empty, Empty, Empty, Empty, DoubleWord,  Empty, Empty, Empty, Empty),
+        Array(Empty, TripleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, TripleWord,  Empty, Empty, Empty, TripleWord, Empty),
+        Array(Empty, Empty, DoubleLetter, Empty, Empty, Empty, DoubleLetter, Empty, DoubleLetter, Empty, Empty, Empty, DoubleLetter,  Empty, Empty),
+        Array(TripleWord, Empty, Empty, DoubleLetter, Empty, Empty, Empty, DoubleWord, Empty, Empty, Empty, DoubleLetter, Empty, Empty, TripleWord),
+        Array(Empty, Empty, DoubleLetter, Empty, Empty, Empty, DoubleLetter, Empty, DoubleLetter, Empty, Empty, Empty, DoubleLetter,  Empty, Empty),
+        Array(Empty, TripleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, TripleWord,  Empty, Empty, Empty, TripleWord, Empty),
+        Array(Empty, Empty, Empty, Empty, DoubleWord, Empty, Empty, Empty, Empty, Empty, DoubleWord,  Empty, Empty, Empty, Empty),
+        Array(DoubleLetter, Empty, Empty, DoubleWord, Empty, Empty, Empty, DoubleLetter, Empty, Empty, Empty, DoubleWord, Empty, Empty, DoubleLetter),
+        Array(Empty, Empty, DoubleWord, Empty, Empty, Empty, DoubleLetter, Empty, DoubleLetter, Empty, Empty, Empty, DoubleWord, Empty, Empty),
+        Array(Empty, DoubleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, DoubleWord, Empty),
+        Array(TripleWord, Empty, Empty, DoubleLetter, Empty, Empty, Empty, TripleWord, Empty, Empty, Empty, DoubleLetter, Empty, Empty, TripleWord)
       )
   }
 }
