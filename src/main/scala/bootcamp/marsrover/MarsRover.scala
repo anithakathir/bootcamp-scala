@@ -1,29 +1,47 @@
 package com.indix.bootcamp.marsrover
 
+case class Position(x:Int, y:Int)
+
 object MarsRover {
 
-  val left: Char = 'L'
+  object Directions extends Enumeration
+  {
+    type Directions = Value
+    val north = 'N'
+    val east = 'E'
+    val south = 'S'
+    val west = 'W'
+  }
 
-  val rotateLeftMap: Map[Char,Char] = Map('S'->'E','E'->'N','N'->'W','W'->'S')
-  val rotateRightMap: Map[Char,Char] = Map('S'->'W','W'->'N','N'->'E','E'->'S')
+  val directions = List('N','E','S','W')
 
-  def moveForward(currentPosition: Set[Int], head: Char): Set[Int] ={
+
+  def rotateLeft(head: Char): Char={
+    directions.reverse((directions.reverse.indexOf(head) + 1)% directions.length )
+  }
+
+  def rotateRight(head: Char): Char={
+    directions((directions.indexOf(head) + 1)% directions.length )
+  }
+
+
+  def moveForward(currentPosition: Position, head: Char): Position ={
     head match{
-      case 'N' => Set(currentPosition.head,currentPosition.last + 1)
-      case 'S' => Set(currentPosition.head,currentPosition.last - 1)
-      case 'E' => Set(currentPosition.head + 1,currentPosition.last)
-      case 'W' => Set(currentPosition.head - 1,currentPosition.last)
+      case Directions.north => Position(currentPosition.x,currentPosition.y + 1)
+      case Directions.south => Position(currentPosition.x,currentPosition.y - 1)
+      case Directions.east => Position(currentPosition.x + 1,currentPosition.y)
+      case Directions.west => Position(currentPosition.x - 1,currentPosition.y)
     }
   }
-  def processRoverMovement(maxPosition : Set[Int], initPosition: Set[Int],initHead: Char, commandList: String): (Set[Int],Char) ={
+  def processRoverMovement(maxPosition : Position, initPosition: Position,initHead: Char, commandList: String): (Position,Char) ={
     commandList.foldLeft(initPosition,initHead){
       (position,command) => {
-        if((position._1.head > maxPosition.head) || (position._1.last > maxPosition.last))
+        if((position._1.x > maxPosition.x) || (position._1.y > maxPosition.y))
           throw new IllegalStateException("Not allowed to go beyond the plateau")
           else {
           command match {
-            case 'L' => (position._1, rotateLeftMap(position._2))
-            case 'R' => (position._1, rotateRightMap(position._2))
+            case 'L' => (position._1, rotateLeft(position._2))
+            case 'R' => (position._1, rotateRight(position._2))
             case 'M' => (moveForward(position._1, position._2), position._2)
           }
         }
